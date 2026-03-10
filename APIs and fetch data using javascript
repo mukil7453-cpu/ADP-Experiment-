@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bike Showroom</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f4f4f4;
+            background-image:url(https://wallpapercave.com/wp/wp4983952.jpg);
+            background-size: cover;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+        
+
+        input, button {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        .bike-card {
+            background: white;
+            width: 250px;
+            margin: 10px auto;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px gray;
+        }
+
+        .delete-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1> SHANKAR BIKE SHOWROOM</h1>
+
+    <div class="container">
+        <input type="text" id="bikeName" placeholder="Bike Name">
+        <input type="text" id="bikePrice" placeholder="Price">
+        <button onclick="addBike()">Add Bike</button>
+    </div>
+
+    <div id="showroom"></div>
+
+    <script>
+        function addBike() {
+            let name = document.getElementById("bikeName").value.trim();
+            let price = document.getElementById("bikePrice").value.trim();
+
+            if (name === "" || price === "") {
+                alert("Enter bike name and price");
+                return;
+            }
+
+            // Create card
+            let card = document.createElement("div");
+            card.className = "bike-card";
+
+            // Bike details
+            let title = document.createElement("h3");
+            title.textContent = name;
+
+            let cost = document.createElement("p");
+            cost.textContent = "Price: ₹" + price;
+
+            // Delete button
+            let delBtn = document.createElement("button");
+            delBtn.textContent = "Delete";
+            delBtn.className = "delete-btn";
+
+            delBtn.onclick = function () {
+                card.remove();
+            };
+
+            // Append elements
+            card.appendChild(title);
+            card.appendChild(cost);
+            card.appendChild(delBtn);
+
+            document.getElementById("showroom").appendChild(card);
+
+            // Clear inputs
+            document.getElementById("bikeName").value = "";
+            document.getElementById("bikePrice").value = "";
+        }
+    </script>
+
+</body>
+</html>
